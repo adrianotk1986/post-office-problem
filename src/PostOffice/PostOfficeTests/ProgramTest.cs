@@ -47,6 +47,9 @@ namespace PostOfficeTests
             return expectedRotasMD5.SequenceEqual(rotasMD5);
         }
 
+        /// <summary>
+        /// This test covers the case where the source is adjacent to the destination.
+        /// </summary>
         [Test]
         public void OneEdgePath()
         {
@@ -85,6 +88,9 @@ namespace PostOfficeTests
             Assert.True(EqualFiles(PathToFile + expectedRoutesFilename, PathToFile + routesFilename));
         }
         
+        /// <summary>
+        /// This test covers the case where the destination is unreachable.
+        /// </summary>
         [Test]
         public void DisconnectedPath()
         {
@@ -109,6 +115,52 @@ namespace PostOfficeTests
             {
                 writer1.WriteLine(validLocations[0] + " " + validLocations[2]);
                 writer2.WriteLine(validLocations[0] + " " + validLocations[2] + " " + int.MaxValue);
+            }
+
+            string[] args = {PathToFile + graphFilename, PathToFile + jobsFilename, PathToFile + routesFilename};
+            
+            // Act
+            Program.Main(args);
+     
+            // Assert
+            Assert.True(EqualFiles(PathToFile + expectedRoutesFilename, PathToFile + routesFilename));
+        }
+        
+        /// <summary>
+        /// This test covers the given example case.
+        /// </summary>
+        [Test]
+        public void ExamplePath()
+        {
+            // Arrange
+            using (var writer = new StreamWriter(PathToFile + graphFilename))
+            {
+                // private readonly string[] validLocations = {"BC", "LS", "LV", "RC", "SF", "WS"};
+                writer.WriteLine("LS SF 1");
+                writer.WriteLine("SF LS 2");
+                writer.WriteLine("LS LV 1");
+                writer.WriteLine("LV LS 1");
+                writer.WriteLine("SF LV 2");
+                writer.WriteLine("LV SF 2");
+                writer.WriteLine("LS RC 1");
+                writer.WriteLine("RC LS 2");
+                writer.WriteLine("SF WS 1");
+                writer.WriteLine("WS SF 2");
+                writer.WriteLine("LV BC 1");
+                writer.WriteLine("BC LV 1");
+            }
+
+            using (var writer = new StreamWriter(PathToFile + jobsFilename))
+            {
+                writer.WriteLine("SF WS");
+                writer.WriteLine("LS BC");
+                writer.WriteLine("WS BC");
+            }
+            using (var writer = new StreamWriter(PathToFile + expectedRoutesFilename))
+            {
+                writer.WriteLine("SF WS 1");
+                writer.WriteLine("LS LV BC 2");
+                writer.WriteLine("WS SF LV BC 5");
             }
 
             string[] args = {PathToFile + graphFilename, PathToFile + jobsFilename, PathToFile + routesFilename};
