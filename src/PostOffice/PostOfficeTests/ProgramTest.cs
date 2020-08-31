@@ -85,5 +85,42 @@ namespace PostOfficeTests
             // Assert
             Assert.True(EqualFiles(PathToFile + expectedRoutesFilename, PathToFile + routesFilename));
         }
+        
+        [Test]
+        public void DisconnectedPath()
+        {
+            // Arrange
+            var fromToLocations = new List<string>();
+            
+            for (int i = 0; i < 3; i += 2)
+            {
+                fromToLocations.Add(validLocations[i] + " " + validLocations[i+1]);
+                // BC LS 1
+                // LV RC 1
+            }
+            
+            using (var writer = new StreamWriter(PathToFile + graphFilename))
+            {
+                foreach (var fromTo in fromToLocations)
+                {
+                    writer.WriteLine(fromTo + " 1");
+                }
+            }
+            
+            using (var writer1 = new StreamWriter(PathToFile + jobsFilename))
+            using (var writer2 = new StreamWriter(PathToFile + expectedRoutesFilename))
+            {
+                writer1.WriteLine(validLocations[0] + " " + validLocations[2]);
+                writer2.WriteLine(validLocations[0] + " " + validLocations[2] + " " + int.MaxValue);
+            }
+
+            string[] args = {PathToFile + graphFilename, PathToFile + jobsFilename, PathToFile + routesFilename};
+            
+            // Act
+            Program.Main(args);
+     
+            // Assert
+            Assert.True(EqualFiles(PathToFile + expectedRoutesFilename, PathToFile + routesFilename));
+        }
     }
 }

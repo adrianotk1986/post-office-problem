@@ -14,7 +14,7 @@ namespace PostOffice.Graph
             var trails = new Dictionary<string, string>();
             var unvisitedNodes = new List<Node>(graph.Values);
             
-            // Initialize all travel times as INFINITE
+            // Initialize all travel times as 'INFINITE'
             var travelTimes = graph.Keys.ToDictionary(nodeName => nodeName, nodeName => int.MaxValue);
             // Travel time from source to itself is 0
             travelTimes[job.from] = NoTravelTime;
@@ -40,10 +40,10 @@ namespace PostOffice.Graph
 
                 if (nextNode == graph[job.to])
                 {
-                    return ConstructPath(job.to, trails, travelTimes);
+                    return ConstructPath(job, trails, travelTimes);
                 }
             }
-            return ConstructPath(job.to, trails, travelTimes);
+            return ConstructPath(job, trails, travelTimes);
         }
 
         /// <summary>
@@ -77,18 +77,29 @@ namespace PostOffice.Graph
         /// Constructs the path starting from the destination until the source node, and also adds the total
         /// travel time for the path.
         /// </summary>
-        /// <param name="destination">The name of the destination node.</param>
+        /// <param name="job">The given job.</param>
         /// <param name="trails">The path trails that will be used to construct the path.</param>
         /// <param name="travelTimes">The travel times from the source node to the other nodes.</param>
         /// <returns>A list of strings, containing the ordered locations and the last element being the total travel
         ///     time for the path.
         /// </returns>
-        private List<string> ConstructPath(string destination, IReadOnlyDictionary<string, string> trails, 
+        private List<string> ConstructPath(Job job, IReadOnlyDictionary<string, string> trails, 
             IReadOnlyDictionary<string, int> travelTimes)
         {
             // The destination and its previous node is the starting point.
-            var path = new List<string> {destination};
-            var previousNode = trails[destination];
+            var path = new List<string> {job.to};
+            var previousNode = "";
+            
+            try
+            {
+                previousNode = trails[job.to];
+            }
+            catch (KeyNotFoundException e)
+            {
+                // When the destination is unreachable, the route returns with the travel time as 'INFINITE'.
+                return new List<string>{job.from, job.to, int.MaxValue.ToString()};
+            }
+            
             path.Add(previousNode);
             
             // We go through the trails until we reach the starting node.
@@ -100,7 +111,7 @@ namespace PostOffice.Graph
 
             path.Reverse();
             
-            path.Add(travelTimes[destination].ToString());
+            path.Add(travelTimes[job.to].ToString());
 
             return path;
         }
