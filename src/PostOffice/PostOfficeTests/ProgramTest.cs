@@ -12,7 +12,6 @@ namespace PostOfficeTests
     {
         public string PathToFile { get; set; }
         private readonly string[] validLocations = {"BC", "LS", "LV", "RC", "SF", "WS"};
-        private readonly string[] invalidLocations = {"AA", "BB", "CC", "DD", "EE", "FF"};
         private readonly string graphFilename = "trechos.txt";
         private readonly string jobsFilename = "encomendas.txt";
         private readonly string expectedRoutesFilename = "expectedRotas.txt";
@@ -28,7 +27,7 @@ namespace PostOfficeTests
         [TearDown]
         public void TearDown()
         {
-            // Directory.Delete(PathToFile, recursive: true);
+            Directory.Delete(PathToFile, recursive: true);
         }
         
         private bool EqualFiles(string filePath1, string filePath2)
@@ -95,8 +94,6 @@ namespace PostOfficeTests
             for (int i = 0; i < 3; i += 2)
             {
                 fromToLocations.Add(validLocations[i] + " " + validLocations[i+1]);
-                // BC LS 1
-                // LV RC 1
             }
             
             using (var writer = new StreamWriter(PathToFile + graphFilename))
