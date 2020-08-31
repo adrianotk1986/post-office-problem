@@ -1,6 +1,6 @@
-﻿﻿using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
-namespace ConsoleApp1
+namespace PostOffice.Models
 {
     public class Node
     {

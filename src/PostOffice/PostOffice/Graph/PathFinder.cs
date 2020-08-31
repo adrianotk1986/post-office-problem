@@ -1,7 +1,8 @@
-﻿﻿using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using PostOffice.Models;
 
-namespace ConsoleApp1.graph
+namespace PostOffice.Graph
 {
     public class PathFinder
     {

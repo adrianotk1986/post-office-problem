@@ -1,6 +1,4 @@
-﻿﻿using System.Security.Principal;
-
-namespace ConsoleApp1
+﻿namespace PostOffice.Models
 {
     public class Edge
     {

@@ -1,6 +1,6 @@
 ﻿﻿using System;
 
-namespace ConsoleApp1
+ namespace PostOffice.Exceptions
 {
     public class ValidationException : Exception
     {

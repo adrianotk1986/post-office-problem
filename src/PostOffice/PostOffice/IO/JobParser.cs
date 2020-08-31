@@ -1,9 +1,11 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using PostOffice.Exceptions;
+using PostOffice.Models;
 
-namespace ConsoleApp1.io
+namespace PostOffice.IO
 {
     public class JobParser
     {
