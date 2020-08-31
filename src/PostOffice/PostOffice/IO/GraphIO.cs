@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using PostOffice.Exceptions;
+using PostOffice.Graph.Interfaces;
+using PostOffice.IO.Interfaces;
 using PostOffice.Models;
 
 namespace PostOffice.IO
 {
-    public class GraphParser
+    public class GraphIO : IGraphInputReader
     {
-        public static Dictionary<string, Node> parseInput(string pathsFileLocation)
+        public Dictionary<string, Node> ParseInput(string pathsFileLocation)
         {
             var paths = System.IO.File.ReadAllLines(pathsFileLocation);
 
@@ -30,7 +32,7 @@ namespace PostOffice.IO
                 }
                 else
                 {
-                    graph[source].connections.Add(new Edge(new Node(source), new Node(destination), travelTime));
+                    graph[source].edges.Add(new Edge(new Node(source), new Node(destination), travelTime));
                 }
             }
 
