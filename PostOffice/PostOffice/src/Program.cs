@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApp1;
+using ConsoleApp1.io;
 
 namespace PostOffice
 {
@@ -6,7 +7,8 @@ namespace PostOffice
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var graph = GraphParser.parseInput(args[0]);
+            var pendingJobs = JobParser.parseInput(args[1]);
         }
     }
 }
