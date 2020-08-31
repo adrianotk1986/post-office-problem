@@ -1,0 +1,1 @@
+dotnet test src/PostOffice/PostOfficeTests/PostOfficeTests.csproj
