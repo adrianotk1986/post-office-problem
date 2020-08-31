@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostOffice", "PostOffice\PostOffice.csproj", "{B8A689A9-AC54-413D-9868-54671A34955C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostOfficeTests", "PostOfficeTests\PostOfficeTests.csproj", "{75297674-AD63-4B5F-B478-853502B6790A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{B8A689A9-AC54-413D-9868-54671A34955C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8A689A9-AC54-413D-9868-54671A34955C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8A689A9-AC54-413D-9868-54671A34955C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75297674-AD63-4B5F-B478-853502B6790A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75297674-AD63-4B5F-B478-853502B6790A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75297674-AD63-4B5F-B478-853502B6790A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75297674-AD63-4B5F-B478-853502B6790A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
