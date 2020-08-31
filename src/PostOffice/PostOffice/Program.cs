@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using ConsoleApp1;
-using ConsoleApp1.graph;
-using ConsoleApp1.io;
+using PostOffice.Graph;
+using PostOffice.IO;
 
 namespace PostOffice
 {
