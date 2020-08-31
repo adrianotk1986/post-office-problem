@@ -7,9 +7,9 @@ using PostOffice.Models;
 
 namespace PostOffice
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             // We could implement a strategy/factory design pattern for both the graph and the job IO, which would
             // give the possibility to retrieve their respective data from elsewhere (for instance, from a web service).

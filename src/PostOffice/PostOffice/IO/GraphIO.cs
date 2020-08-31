@@ -34,6 +34,12 @@ namespace PostOffice.IO
                 {
                     graph[source].edges.Add(new Edge(new Node(source), new Node(destination), travelTime));
                 }
+
+                if (!graph.ContainsKey(destination))
+                {
+                    graph.Add(destination, new Node(destination, destination, 0));
+                }
+                
             }
 
             return graph;
