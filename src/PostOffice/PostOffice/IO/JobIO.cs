@@ -13,7 +13,7 @@ namespace PostOffice.IO
         public List<Job> ParseInput(string filePath)
         {
             var pendingJobs = new List<Job>();
-            var allJobs = System.IO.File.ReadAllLines(filePath);
+            var allJobs = File.ReadAllLines(filePath);
             
             foreach (var jobLine in allJobs)
             {
