@@ -17,7 +17,8 @@ namespace PostOffice.IO
             foreach (var path in paths)
             {
                 var splitedPath = path.Split();
-                if (splitedPath.Length != 3 || !int.TryParse(splitedPath[2], out var travelTime))
+                if (splitedPath.Length != 3 || !int.TryParse(splitedPath[2], out var travelTime) 
+                                            || int.Parse(splitedPath[2]) < 0)
                 {
                     throw new ValidationException("Invalid graph input content: " + path + "\nEach line must " +
                                                   "have the following format: origin destination cost \nE.g.: LS SF 1");
