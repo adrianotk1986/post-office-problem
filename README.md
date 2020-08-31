@@ -1,4 +1,5 @@
 # post-office-problem
+A post office problem that finds the shortest path between two given locations using Dijkstra's algorithm.
 
 # Prerequisites
 The framework used in this solution was the .NET Core v3.1.
