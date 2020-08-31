@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using PostOffice.Exceptions;
 using PostOffice.Graph;
@@ -11,6 +12,13 @@ namespace PostOffice
     {
         public static void Main(string[] args)
         {
+            if (args == null || args.Length < 2)
+            {
+                Console.WriteLine("Usage: " +
+                                  "dotnet dll_file_location graph_edges_file_path jobs_file_path routes_file_path");
+                Environment.Exit(0);
+            }
+            
             // We could implement a strategy/factory design pattern for both the graph and the job IO, which would
             // give the possibility to retrieve their respective data from elsewhere (for instance, from a web service).
             var graphIO = new GraphIO();

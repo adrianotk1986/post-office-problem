@@ -94,7 +94,7 @@ namespace PostOffice.Graph
             {
                 previousNode = trails[job.to];
             }
-            catch (KeyNotFoundException e)
+            catch (KeyNotFoundException)
             {
                 // When the destination is unreachable, the route returns with the travel time as 'INFINITE'.
                 return new List<string>{job.from, job.to, int.MaxValue.ToString()};
